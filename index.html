@@ -98,7 +98,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 
 <script>
 // ==================== 配置 ====================
-var API_URL = "https://www.kdocs.cn/api/v3/ide/file/525952894165/script/V2-5JdDA9VA4oqlVS8e5U8i0o/sync_task";
+var API_URL = "https://curtain-proxy.lwwy8888.workers.dev/api/v3/ide/file/525952894165/script/V2-5JdDA9VA4oqlVS8e5U8i0o/sync_task";
 var TOKEN = "3N2fkZ9JkX6B7b3inW7vYa";
 // =============================================
 
@@ -202,43 +202,50 @@ function submitForm(){
   btn.textContent = "提交中...";
   btn.classList.add("loading");
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", API_URL, true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader("AirScript-Token", TOKEN);
-
-  xhr.onload = function(){
+  fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "AirScript-Token": TOKEN
+    },
+    body: JSON.stringify({
+      Context: {
+        argv: {
+          customerName: name,
+          phone: phone,
+          address: document.getElementById("address").value.trim(),
+          remark: document.getElementById("remark").value.trim(),
+          items: items
+        }
+      }
+    })
+  })
+  .then(function(resp) {
+    return resp.json().then(function(data) {
+      return { ok: resp.ok, status: resp.status, data: data };
+    });
+  })
+  .then(function(result) {
     btn.textContent = "提交报价单";
     btn.classList.remove("loading");
 
-    if (xhr.status >= 200 && xhr.status < 300) {
-      try {
-        var resp = JSON.parse(xhr.responseText);
-        if (resp.data && resp.data.result) {
-          var result = JSON.parse(resp.data.result);
-          if (result.success) {
-            showToast("提交成功！", "success");
-            document.getElementById("customerName").value = "";
-            document.getElementById("phone").value = "";
-            document.getElementById("address").value = "";
-            document.getElementById("remark").value = "";
-            curtainCount = 1;
-            renderCurtains();
-          } else {
-            showToast(result.error || "提交失败", "error");
-          }
-        } else if (resp.status === "finished") {
-          showToast("提交成功！", "success");
-          document.getElementById("customerName").value = "";
-          document.getElementById("phone").value = "";
-          document.getElementById("address").value = "";
-          document.getElementById("remark").value = "";
-          curtainCount = 1;
-          renderCurtains();
-        } else {
-          showToast("提交失败，请重试", "error");
+    if (result.ok) {
+      var data = result.data;
+      var success = false;
+
+      if (data.data && data.data.result) {
+        try {
+          var r = typeof data.data.result === "string" ? JSON.parse(data.data.result) : data.data.result;
+          if (r.success) success = true;
+          else showToast(r.error || "提交失败", "error");
+        } catch(e) {
+          success = true;
         }
-      } catch(e){
+      } else if (data.status === "finished") {
+        success = true;
+      }
+
+      if (success) {
         showToast("提交成功！", "success");
         document.getElementById("customerName").value = "";
         document.getElementById("phone").value = "";
@@ -248,27 +255,14 @@ function submitForm(){
         renderCurtains();
       }
     } else {
-      showToast("网络错误，请重试", "error");
+      showToast("提交失败，请重试", "error");
     }
-  };
-
-  xhr.onerror = function(){
+  })
+  .catch(function() {
     btn.textContent = "提交报价单";
     btn.classList.remove("loading");
     showToast("网络错误，请检查连接", "error");
-  };
-
-  xhr.send(JSON.stringify({
-    Context: {
-      argv: {
-        customerName: name,
-        phone: phone,
-        address: document.getElementById("address").value.trim(),
-        remark: document.getElementById("remark").value.trim(),
-        items: items
-      }
-    }
-  }));
+  });
 }
 
 renderCurtains();
