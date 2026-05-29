@@ -217,7 +217,10 @@ function submitForm() {
   btn.textContent = "提交中...";
   btn.classList.add("loading");
 
-  fetch(WORKER, {
+  var ctrl = new AbortController();
+var timer = setTimeout(function() { ctrl.abort(); }, 15000);
+
+fetch(WORKER, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -231,8 +234,10 @@ function submitForm() {
         }
       }
     })
-  })
-  .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)); })
+  }),
+  signal: ctrl.signal
+})
+.then(function(r) { clearTimeout(timer); return r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)); })
   .then(function(d) {
     btn.textContent = "提交报价单";
     btn.classList.remove("loading");
@@ -247,6 +252,7 @@ function submitForm() {
     else { toast("提交失败", "error"); }
   })
   .catch(function(e) {
+    clearTimeout(timer);
     btn.textContent = "提交报价单";
     btn.classList.remove("loading");
     toast("网络错误，请重试", "error");
