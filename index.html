@@ -233,10 +233,9 @@ fetch(WORKER, {
           items: items
         }
       }
-    })
-  }),
-  signal: ctrl.signal
-})
+    }),
+    signal: ctrl.signal
+  })
 .then(function(r) { clearTimeout(timer); return r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)); })
   .then(function(d) {
     btn.textContent = "提交报价单";
