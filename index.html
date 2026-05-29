@@ -6,59 +6,68 @@
 <title>窗帘定制报价单</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;min-height:100vh;color:#333}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f5f6fa;min-height:100vh;color:#2c3e50;-webkit-tap-highlight-color:transparent}
 
-.nav{background:#fff;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #e8e8e8;position:sticky;top:0;z-index:10}
-.nav-close{font-size:22px;color:#999;cursor:pointer;width:32px;text-align:center}
-.nav-title{font-size:16px;font-weight:500;text-align:center;flex:1}
-.nav-ip{font-size:11px;color:#bbb;text-align:center}
-.nav-more{font-size:18px;color:#999;cursor:pointer;width:32px;text-align:center}
+/* 导航栏 - 小程序风格 */
+.nav{background:#fff;display:flex;align-items:center;justify-content:center;padding:0 16px;height:48px;position:sticky;top:0;z-index:100;border-bottom:1px solid #f0f0f0}
+.nav-back{position:absolute;left:14px;color:#333;font-size:18px;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.nav-back:active{background:#f5f5f5}
+.nav-title{font-size:17px;font-weight:600}
 
-.hero{background:linear-gradient(135deg,#2b7de9,#1a5bbf);color:#fff;padding:28px 20px 24px;text-align:center}
-.hero h1{font-size:22px;font-weight:700;margin-bottom:6px}
-.hero p{font-size:13px;opacity:.85}
+/* 顶部卡片 */
+.hero{margin:16px 16px 0;background:linear-gradient(135deg,#4f7df3,#5b4ff3);border-radius:16px;padding:24px 20px;color:#fff;box-shadow:0 8px 24px rgba(79,125,243,.25)}
+.hero h1{font-size:22px;font-weight:700;margin-bottom:6px;letter-spacing:.5px}
+.hero p{font-size:13px;opacity:.8;font-weight:400}
 
-.section{background:#fff;margin:12px 12px 0;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.section-title{font-size:15px;font-weight:600;margin-bottom:16px;display:flex;align-items:center}
-.section-title::before{content:"";display:inline-block;width:5px;height:16px;background:#2b7de9;border-radius:3px;margin-right:8px}
+/* 区块 */
+.section{background:#fff;margin:12px 16px 0;border-radius:14px;padding:18px 16px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.section-title{font-size:15px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;color:#1a1a2e}
+.section-title .dot{display:inline-block;width:6px;height:6px;background:#4f7df3;border-radius:50%;margin-right:10px}
 
-.form-row{display:flex;gap:12px;margin-bottom:14px}
+/* 表单行 */
+.form-row{display:flex;gap:10px;margin-bottom:14px}
 .form-row:last-child{margin-bottom:0}
 .form-group{flex:1;min-width:0}
 .form-group.full{flex:1 1 100%}
-.form-label{font-size:13px;color:#555;margin-bottom:6px;display:block}
-.form-label .req{color:#e74c3c;margin-left:2px}
-.form-input,.form-select{width:100%;height:40px;border:1px solid #e0e0e0;border-radius:8px;padding:0 12px;font-size:14px;background:#fafafa;outline:none;transition:border .2s;appearance:none;-webkit-appearance:none}
-.form-input:focus,.form-select:focus{border-color:#2b7de9;background:#fff}
-.form-input::placeholder{color:#bfbfbf}
-.form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5l3 3 3-3' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.form-label{font-size:13px;color:#666;margin-bottom:6px;display:block;font-weight:500}
+.form-label .req{color:#ff4757;margin-left:1px}
+.form-input,.form-select{width:100%;height:42px;border:1px solid #e8ecf1;border-radius:10px;padding:0 14px;font-size:14px;background:#f8f9fb;outline:none;transition:all .25s;appearance:none;-webkit-appearance:none;color:#333}
+.form-input:focus,.form-select:focus{border-color:#4f7df3;background:#fff;box-shadow:0 0 0 3px rgba(79,125,243,.08)}
+.form-input::placeholder{color:#c0c4cc}
+.form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5l3 3 3-3' stroke='%23aab' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:34px;cursor:pointer}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 
-.curtain-item{background:#f8f9fc;border:1px solid #eef0f5;border-radius:10px;padding:14px;margin-bottom:12px;position:relative}
-.curtain-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.curtain-label{font-size:14px;font-weight:600;color:#2b7de9}
-.curtain-del{font-size:12px;color:#e74c3c;background:#fde8e8;border:none;padding:4px 10px;border-radius:14px;cursor:pointer}
+/* 窗帘卡片 */
+.curtain-card{background:#f8f9fc;border:1px solid #eef1f6;border-radius:12px;padding:16px;margin-bottom:12px;position:relative;transition:all .2s}
+.curtain-card:active{transform:scale(.99)}
+.curtain-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #edf0f5}
+.curtain-num{font-size:14px;font-weight:700;color:#4f7df3;display:flex;align-items:center;gap:6px}
+.curtain-num .badge{background:rgba(79,125,243,.1);padding:2px 8px;border-radius:10px;font-size:12px;font-weight:500}
+.curtain-del{font-size:12px;color:#ff6b81;background:#fff0f2;border:none;padding:5px 12px;border-radius:16px;cursor:pointer;font-weight:500;transition:all .15s}
+.curtain-del:active{background:#ffe0e3;transform:scale(.95)}
 
-.btn-add{width:100%;height:40px;border:1.5px dashed #d0d5dd;border-radius:10px;background:transparent;color:#888;font-size:14px;cursor:pointer;margin-top:8px;transition:all .2s}
-.btn-add:active{border-color:#2b7de9;color:#2b7de9;background:#f5f8ff}
-.btn-submit{width:calc(100% - 24px);height:48px;margin:24px 12px 40px;border:none;border-radius:12px;background:linear-gradient(135deg,#2b7de9,#1a5bbf);color:#fff;font-size:17px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(43,125,233,.3);transition:opacity .2s}
-.btn-submit:active{opacity:.85}
-.btn-submit.loading{opacity:.7;pointer-events:none}
+/* 按钮 */
+.btn-add{width:100%;height:42px;border:1.5px dashed #d5dae0;border-radius:12px;background:transparent;color:#999;font-size:14px;cursor:pointer;margin-top:8px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:4px}
+.btn-add .plus{font-size:18px;font-weight:300;line-height:1}
+.btn-add:active{border-color:#4f7df3;color:#4f7df3;background:#f8faff}
 
-.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);padding:12px 24px;border-radius:10px;font-size:14px;z-index:100;box-shadow:0 4px 16px rgba(0,0,0,.15);animation:slideDown .3s ease}
-.toast.success{background:#e8f8e8;color:#27ae60}
-.toast.error{background:#fde8e8;color:#e74c3c}
-@keyframes slideDown{from{opacity:0;transform:translateX(-50%) translateY(-20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.btn-submit{display:block;width:calc(100% - 32px);height:50px;margin:24px 16px 40px;border:none;border-radius:14px;background:linear-gradient(135deg,#4f7df3,#5b4ff3);color:#fff;font-size:17px;font-weight:600;cursor:pointer;box-shadow:0 6px 20px rgba(79,125,243,.35);transition:all .2s;letter-spacing:1px}
+.btn-submit:active{transform:scale(.97);box-shadow:0 3px 12px rgba(79,125,243,.25)}
+.btn-submit.loading{opacity:.75;pointer-events:none}
+
+/* 提示 */
+.toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);padding:12px 22px;border-radius:22px;font-size:14px;z-index:999;box-shadow:0 6px 20px rgba(0,0,0,.12);animation:fadeIn .3s ease;font-weight:500;letter-spacing:.3px;white-space:nowrap}
+.toast.success{background:#eafaf1;color:#27ae60}
+.toast.error{background:#fdf0f0;color:#e74c3c}
+
+@keyframes fadeIn{from{opacity:0;transform:translateX(-50%) translateY(-12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 </style>
 </head>
 <body>
 
 <div class="nav">
-  <span class="nav-close">&times;</span>
-  <div style="text-align:center">
-    <div class="nav-title">窗帘定制报价单</div>
-    <div class="nav-ip">192.168.124.252</div>
-  </div>
-  <span class="nav-more">&#8942;</span>
+  <span class="nav-back">&lsaquo;</span>
+  <span class="nav-title">窗帘定制报价单</span>
 </div>
 
 <div class="hero">
@@ -67,7 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 </div>
 
 <div class="section">
-  <div class="section-title">客户信息</div>
+  <div class="section-title"><span class="dot"></span>客户信息</div>
   <div class="form-row">
     <div class="form-group">
       <label class="form-label">姓名<span class="req">*</span></label>
@@ -89,125 +98,128 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 </div>
 
 <div class="section">
-  <div class="section-title">窗帘明细</div>
+  <div class="section-title"><span class="dot"></span>窗帘明细</div>
   <div id="curtainList"></div>
-  <button class="btn-add" onclick="addCurtain()">+ 添加窗帘</button>
+  <button class="btn-add" onclick="addCurtain()"><span class="plus">+</span> 添加窗帘</button>
 </div>
 
 <button class="btn-submit" id="submitBtn" onclick="submitForm()">提交报价单</button>
 
 <script>
-// ==================== 配置 ====================
-var API_URL = "https://curtain-proxy.lwwy8888.workers.dev/api/v3/ide/file/525952894165/script/V2-5JdDA9VA4oqlVS8e5U8i0o/sync_task";
-var TOKEN = "3N2fkZ9JkX6B7b3inW7vYa";
-// =============================================
-
+// Worker 地址（Token 隐藏在 Worker 端，前端不暴露）
+var WORKER = "https://curtain-proxy.lwwy8888.workers.dev";
 var curtainCount = 1;
 
-function curtainHTML(n){
-  var types = ["卷帘","百叶帘","布艺帘","柔纱帘","斑马帘","电动帘"];
-  var opts = "";
-  for (var i = 0; i < types.length; i++) {
-    opts += '<option value="' + types[i] + '">' + types[i] + '</option>';
+var CURTAIN_TYPES = ["卷帘","百叶帘","布艺帘","柔纱帘","斑马帘","电动帘"];
+var CONTROLS = ["手动","电动","遥控"];
+
+function optionList(list, selected) {
+  var h = "";
+  for (var i = 0; i < list.length; i++) {
+    var sel = list[i] === selected ? " selected" : "";
+    h += '<option value="' + list[i] + '"' + sel + '>' + list[i] + '</option>';
   }
-  var delBtn = n > 1 ? '<button class="curtain-del" onclick="removeCurtain(' + n + ')">删除</button>' : "";
-  return '<div class="curtain-item" id="curtain' + n + '">'
+  return h;
+}
+
+function curtainHTML(n) {
+  return '<div class="curtain-card" id="curtain' + n + '">'
     + '<div class="curtain-header">'
-    + '<span class="curtain-label">窗帘 #' + n + '</span>'
-    + delBtn
+    + '<span class="curtain-num"><span class="badge">#' + n + '</span>窗帘</span>'
+    + (n > 1 ? '<button class="curtain-del" onclick="removeCurtain(' + n + ')">删除</button>' : '')
     + '</div>'
     + '<div class="form-row">'
     + '<div class="form-group full">'
     + '<label class="form-label">窗帘类型<span class="req">*</span></label>'
-    + '<select class="form-select" id="type' + n + '">' + opts + '</select>'
+    + '<select class="form-select" id="type' + n + '">' + optionList(CURTAIN_TYPES, "卷帘") + '</select>'
     + '</div></div>'
     + '<div class="form-row">'
     + '<div class="form-group">'
     + '<label class="form-label">宽度(cm)<span class="req">*</span></label>'
-    + '<input class="form-input" id="width' + n + '" type="number" placeholder="如200" min="1" max="999">'
+    + '<input class="form-input" id="width' + n + '" type="number" placeholder="如 200" min="1" max="999">'
     + '</div>'
     + '<div class="form-group">'
     + '<label class="form-label">高度(cm)<span class="req">*</span></label>'
-    + '<input class="form-input" id="height' + n + '" type="number" placeholder="如150" min="1" max="999">'
+    + '<input class="form-input" id="height' + n + '" type="number" placeholder="如 150" min="1" max="999">'
     + '</div></div>'
     + '<div class="form-row">'
     + '<div class="form-group">'
     + '<label class="form-label">控制方式</label>'
-    + '<select class="form-select" id="control' + n + '">'
-    + '<option value="手动">手动</option>'
-    + '<option value="电动">电动</option>'
-    + '<option value="遥控">遥控</option>'
-    + '</select></div>'
+    + '<select class="form-select" id="control' + n + '">' + optionList(CONTROLS, "手动") + '</select>'
+    + '</div>'
     + '<div class="form-group">'
     + '<label class="form-label">数量</label>'
     + '<input class="form-input" id="quantity' + n + '" type="number" value="1" min="1" max="99">'
     + '</div></div></div>';
 }
 
-function renderCurtains(){
-  var html = "";
-  for (var i = 1; i <= curtainCount; i++) html += curtainHTML(i);
-  document.getElementById("curtainList").innerHTML = html;
+function renderCurtains() {
+  var h = "";
+  for (var i = 1; i <= curtainCount; i++) h += curtainHTML(i);
+  document.getElementById("curtainList").innerHTML = h;
 }
 
-function addCurtain(){
-  curtainCount++;
+function addCurtain() { curtainCount++; renderCurtains(); }
+
+function removeCurtain(n) {
+  var el = document.getElementById("curtain" + n);
+  if (el) el.remove();
+  curtainCount = document.querySelectorAll(".curtain-card").length;
   renderCurtains();
 }
 
-function removeCurtain(n){
-  document.getElementById("curtain" + n).remove();
-  curtainCount = document.querySelectorAll(".curtain-item").length;
-  renderCurtains();
-}
-
-function showToast(msg, type){
-  var t = document.createElement("div");
+function toast(msg, type) {
+  var t = document.getElementById("toast");
+  if (t) t.remove();
+  t = document.createElement("div");
+  t.id = "toast";
   t.className = "toast " + type;
   t.textContent = msg;
   document.body.appendChild(t);
-  setTimeout(function(){ t.remove(); }, 2500);
+  setTimeout(function() { t.remove(); }, 2800);
 }
 
-function submitForm(){
+function resetForm() {
+  document.getElementById("customerName").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("address").value = "";
+  document.getElementById("remark").value = "";
+  curtainCount = 1;
+  renderCurtains();
+}
+
+function submitForm() {
   var btn = document.getElementById("submitBtn");
   var name = document.getElementById("customerName").value.trim();
   var phone = document.getElementById("phone").value.trim();
 
-  if (!name) { showToast("请填写客户姓名", "error"); return; }
-  if (!phone) { showToast("请填写手机号", "error"); return; }
-  if (!/^1\d{10}$/.test(phone)) { showToast("手机号格式不正确", "error"); return; }
+  if (!name) { toast("请填写客户姓名", "error"); return; }
+  if (!phone) { toast("请填写手机号", "error"); return; }
+  if (!/^1\d{10}$/.test(phone)) { toast("手机号格式不正确", "error"); return; }
 
   var items = [];
   for (var i = 1; i <= curtainCount; i++) {
-    var typeEl = document.getElementById("type" + i);
-    if (!typeEl) continue;
-    var width = document.getElementById("width" + i).value.trim();
-    var height = document.getElementById("height" + i).value.trim();
-    if (!width || !height) {
-      showToast("窗帘 #" + i + " 请填写宽度和高度", "error");
-      return;
-    }
+    var tEl = document.getElementById("type" + i);
+    if (!tEl) continue;
+    var w = document.getElementById("width" + i).value.trim();
+    var h = document.getElementById("height" + i).value.trim();
+    if (!w || !h) { toast("窗帘 #" + i + " 请填写宽度和高度", "error"); return; }
     items.push({
-      type: typeEl.value,
-      width: width,
-      height: height,
+      type: tEl.value,
+      width: w,
+      height: h,
       control: document.getElementById("control" + i).value,
       quantity: document.getElementById("quantity" + i).value || "1"
     });
   }
-
-  if (items.length === 0) { showToast("请至少添加一个窗帘", "error"); return; }
+  if (!items.length) { toast("请至少添加一个窗帘", "error"); return; }
 
   btn.textContent = "提交中...";
   btn.classList.add("loading");
 
-  fetch(API_URL, {
+  fetch(WORKER, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "AirScript-Token": TOKEN
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       Context: {
         argv: {
@@ -220,48 +232,24 @@ function submitForm(){
       }
     })
   })
-  .then(function(resp) {
-    return resp.json().then(function(data) {
-      return { ok: resp.ok, status: resp.status, data: data };
-    });
-  })
-  .then(function(result) {
+  .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)); })
+  .then(function(d) {
     btn.textContent = "提交报价单";
     btn.classList.remove("loading");
-
-    if (result.ok) {
-      var data = result.data;
-      var success = false;
-
-      if (data.data && data.data.result) {
-        try {
-          var r = typeof data.data.result === "string" ? JSON.parse(data.data.result) : data.data.result;
-          if (r.success) success = true;
-          else showToast(r.error || "提交失败", "error");
-        } catch(e) {
-          success = true;
-        }
-      } else if (data.status === "finished") {
-        success = true;
-      }
-
-      if (success) {
-        showToast("提交成功！", "success");
-        document.getElementById("customerName").value = "";
-        document.getElementById("phone").value = "";
-        document.getElementById("address").value = "";
-        document.getElementById("remark").value = "";
-        curtainCount = 1;
-        renderCurtains();
-      }
-    } else {
-      showToast("提交失败，请重试", "error");
+    var ok = false;
+    if (d.status === "finished") {
+      if (d.data && d.data.result) {
+        try { var rr = typeof d.data.result === "string" ? JSON.parse(d.data.result) : d.data.result; ok = rr.success; }
+        catch(e) { ok = true; }
+      } else { ok = true; }
     }
+    if (ok) { toast("提交成功", "success"); resetForm(); }
+    else { toast("提交失败", "error"); }
   })
-  .catch(function() {
+  .catch(function(e) {
     btn.textContent = "提交报价单";
     btn.classList.remove("loading");
-    showToast("网络错误，请检查连接", "error");
+    toast("网络错误，请重试", "error");
   });
 }
 
